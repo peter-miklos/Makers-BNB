@@ -1,9 +1,21 @@
+process.env.NODE_ENV ? process.env.NODE_ENV : process.env.NODE_ENV = 'development';
+
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+
+var admin = require("firebase-admin");
+var serviceAccount = require("./bnb-plus-" + process.env.NODE_ENV + ".json");
+
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  databaseURL: "https://bnb-plus-" + process.env.NODE_ENV + ".firebaseio.com/"
+});
+var db = admin.database();
+module.exports = db;
 
 var index = require('./routes/index');
 var users = require('./routes/users');
