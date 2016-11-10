@@ -6,3 +6,10 @@
 
 *Ignore documents folder
 **/documents
+
+*Ignore firebase account details
+bnb-plus-development.json
+bnb-plus-test.json
+
+*Ignore npm-debug
+npm-debug.log
